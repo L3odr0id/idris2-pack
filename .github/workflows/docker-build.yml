@@ -33,7 +33,7 @@ jobs:
       - name: Build Docker Images
         run: |
           export NO_CACHE="${{ github.ref == 'refs/heads/main' }}"
-          OWNER=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
+          export OWNER=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
           echo "OWNER=$OWNER" >> $GITHUB_OUTPUT
 
           UBUNTU_RELEASE=noble OWNER=${{ env.OWNER }} make docker-build
