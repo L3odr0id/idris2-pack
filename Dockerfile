@@ -44,4 +44,3 @@ COPY --from=build $PACK_USER_DIR $PACK_USER_DIR
 COPY --from=build $PACK_STATE_DIR $PACK_STATE_DIR
 COPY --from=build $PACK_CACHE_DIR $PACK_CACHE_DIR
 
-HEALTHCHECK CMD pack help || exit 1
