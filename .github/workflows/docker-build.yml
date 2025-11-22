@@ -34,6 +34,7 @@ jobs:
         run: |
           export NO_CACHE="${{ github.ref == 'refs/heads/main' }}"
           export OWNER=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
+          echo "OWNER=$OWNER" >> "$GITHUB_ENV"
 
           UBUNTU_RELEASE=noble OWNER=$OWNER make docker-build
           UBUNTU_RELEASE=jammy OWNER=$OWNER make docker-build
