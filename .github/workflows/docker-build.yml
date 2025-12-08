@@ -35,7 +35,7 @@ jobs:
           export NO_CACHE="${{ github.ref == 'refs/heads/main' }}"
           # Change all uppercase to lowercase
           REPO_OWNER=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
-          # echo "REPO_OWNER=$REPO_OWNER" >> "$GITHUB_ENV"
+          echo "REPO_OWNER=$REPO_OWNER" >> "$GITHUB_ENV"
           # UBUNTU_RELEASE=noble OWNER=$REPO_OWNER make docker-build
           # UBUNTU_RELEASE=jammy OWNER=$REPO_OWNER make docker-build
 
