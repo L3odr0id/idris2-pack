@@ -35,9 +35,9 @@ jobs:
           export NO_CACHE="${{ github.ref == 'refs/heads/main' }}"
           # Change all uppercase to lowercase
           REPO_OWNER=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
-          echo "REPO_OWNER=$REPO_OWNER" >> "$GITHUB_ENV"
-          UBUNTU_RELEASE=noble OWNER=$REPO_OWNER make docker-build
-          UBUNTU_RELEASE=jammy OWNER=$REPO_OWNER make docker-build
+          # echo "REPO_OWNER=$REPO_OWNER" >> "$GITHUB_ENV"
+          # UBUNTU_RELEASE=noble OWNER=$REPO_OWNER make docker-build
+          # UBUNTU_RELEASE=jammy OWNER=$REPO_OWNER make docker-build
 
       - name: Log in to registry
         # if: github.ref == 'refs/heads/main'
@@ -47,19 +47,20 @@ jobs:
       - name: Push images
         # if: github.ref == 'refs/heads/main'
         run: |
-          IMAGE_ID="ghcr.io/$REPO_OWNER/idris2-pack"
-          # Change all uppercase to lowercase
-          IMAGE_ID="$(echo "$IMAGE_ID" | tr '[:upper:]' '[:lower:]')"
-          # Strip git ref prefix from version
-          echo IMAGE_ID="$IMAGE_ID"
-          echo DB_VERSION="$DB_VERSION"
-          docker tag "$IMAGE_ID:jammy" "$IMAGE_ID:$DB_VERSION-jammy"
-          docker tag "$IMAGE_ID:noble" "$IMAGE_ID:$DB_VERSION-noble"
-          docker tag "$IMAGE_ID:noble" "$IMAGE_ID:$DB_VERSION"
-          docker tag "$IMAGE_ID:noble" "$IMAGE_ID:latest"
-          docker push "$IMAGE_ID:latest"
-          docker push "$IMAGE_ID:jammy"
-          docker push "$IMAGE_ID:noble"
-          docker push "$IMAGE_ID:$DB_VERSION"
-          docker push "$IMAGE_ID:$DB_VERSION-jammy"
-          docker push "$IMAGE_ID:$DB_VERSION-noble"
+          echo "$REPO_OWNER"
+          # IMAGE_ID="ghcr.io/$REPO_OWNER/idris2-pack"
+          # # Change all uppercase to lowercase
+          # IMAGE_ID="$(echo "$IMAGE_ID" | tr '[:upper:]' '[:lower:]')"
+          # # Strip git ref prefix from version
+          # echo IMAGE_ID="$IMAGE_ID"
+          # echo DB_VERSION="$DB_VERSION"
+          # docker tag "$IMAGE_ID:jammy" "$IMAGE_ID:$DB_VERSION-jammy"
+          # docker tag "$IMAGE_ID:noble" "$IMAGE_ID:$DB_VERSION-noble"
+          # docker tag "$IMAGE_ID:noble" "$IMAGE_ID:$DB_VERSION"
+          # docker tag "$IMAGE_ID:noble" "$IMAGE_ID:latest"
+          # docker push "$IMAGE_ID:latest"
+          # docker push "$IMAGE_ID:jammy"
+          # docker push "$IMAGE_ID:noble"
+          # docker push "$IMAGE_ID:$DB_VERSION"
+          # docker push "$IMAGE_ID:$DB_VERSION-jammy"
+          # docker push "$IMAGE_ID:$DB_VERSION-noble"
